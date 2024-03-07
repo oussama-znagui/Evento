@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -12,7 +13,12 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $date = today()->format('Y-m-d');
+
+        $events =  Event::where('date', '>=', $date)->get();
+        return view('welcome', [
+            'events' => $events,
+        ]);
     }
 
     /**

@@ -46,7 +46,12 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function customers(){
+    // protected $with = [
+    //     'organizers',
+    // ];
+
+    public function customers()
+    {
         $this->hasMany(Customer::class);
     }
     public function organizers()

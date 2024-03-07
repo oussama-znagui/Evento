@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [CustomerController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -30,6 +31,12 @@ Route::middleware('auth')->group(function () {
 });
 
 //Organizer routes --------------------
-Route::get('/organizer', [OrganizerController::class, 'index']);
+Route::get('/organizer', [OrganizerController::class, 'index'])->name('organizer');
 
-require __DIR__.'/auth.php';
+Route::post('/addEvent', [EventController::class, "store"]);
+Route::delete('/deleteEvent/{event}', [EventController::class, "destroy"]);
+
+Route::get('/event/{event}', [EventController::class, 'show']);
+Route::put('/editEvent/{event}', [EventController::class, 'update']);
+
+require __DIR__ . '/auth.php';
