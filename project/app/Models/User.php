@@ -46,20 +46,22 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    // protected $with = [
-    //     'organizers',
-    // ];
+    protected $with = [
+        'organizers',
+        'customers',
+        'Admins',
+    ];
 
     public function customers()
     {
-        $this->hasMany(Customer::class);
+        return $this->hasMany(Customer::class);
     }
     public function organizers()
     {
-        $this->hasMany(Organizer::class);
+        return $this->hasMany(Organizer::class);
     }
     public function Admins()
     {
-        $this->hasMany(Admin::class);
+        return $this->hasMany(Admin::class);
     }
 }

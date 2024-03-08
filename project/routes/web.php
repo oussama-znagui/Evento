@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganizerController;
@@ -38,5 +39,13 @@ Route::delete('/deleteEvent/{event}', [EventController::class, "destroy"]);
 
 Route::get('/event/{event}', [EventController::class, 'show']);
 Route::put('/editEvent/{event}', [EventController::class, 'update']);
+Route::post('/bookingRequest', [BookingController::class, 'show']);
+Route::post('/Approved{booking}', [BookingController::class, 'update']);
+
+
+//Customer routes --------------------------
+Route::get('/eventC/{event}', [EventController::class, 'show2']);
+Route::post('/booking', [BookingController::class, 'store']);
+Route::get('/customerBookings', [BookingController::class, 'customerBookings']);
 
 require __DIR__ . '/auth.php';

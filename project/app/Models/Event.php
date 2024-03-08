@@ -22,12 +22,21 @@ class Event extends Model
         'organizer_id',
 
     ];
+    protected $with = [
+        'category',
+
+    ];
 
 
 
 
     public function category()
     {
-        $this->belongsTo(Category::class);
+        return  $this->belongsTo(Category::class);
+    }
+
+    public function bookings()
+    {
+        return  $this->hasMany(Booking::class);
     }
 }

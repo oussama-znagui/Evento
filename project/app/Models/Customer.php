@@ -11,9 +11,14 @@ class Customer extends Model
     protected $fillable = [
         'user_id',
     ];
+    
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return  $this->belongsTo(User::class);
+    }
+    public function bookings()
+    {
+        return  $this->hasMany(Booking::class);
     }
 }

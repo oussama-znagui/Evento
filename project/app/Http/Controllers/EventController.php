@@ -85,6 +85,16 @@ class EventController extends Controller
             'categories' => $categories,
         ]);
     }
+    public function show2(Event $event)
+    {
+
+        $event = Event::with('category')->where('id', $event->id)->get();
+        return view('customer.event', [
+            'event' => $event,
+
+        ]);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
